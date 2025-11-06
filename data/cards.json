@@ -1,66 +1,66 @@
 [
     {
-        "image": "../assets/crocodile.png",
+        "image": "./assets/crocodile.png",
         "name": "crocodile"
     },
     {
-        "image": "../assets/echidna.png",
+        "image": "./assets/echidna.png",
         "name": "echidna"
     },
     {
-        "image": "../assets/emu.png",
+        "image": "./assets/emu.png",
         "name": "emu"
     },
     {
-        "image": "../assets/kangaroo.png",
+        "image": "./assets/kangaroo.png",
         "name": "kangaroo"
     },
     {
-        "image": "../assets/koala.png",
+        "image": "./assets/koala.png",
         "name": "koala"
     },
     {
-        "image": "../assets/kookaburra.png",
+        "image": "./assets/kookaburra.png",
         "name": "kookaburra"
     },
     {
-        "image": "../assets/platypus.png",
+        "image": "./assets/platypus.png",
         "name": "platypus"
     },
     {
-        "image": "../assets/turtle.png",
+        "image": "./assets/turtle.png",
         "name": "turtle"
     },
     {
-        "image": "../assets/wombat.png",
+        "image": "./assets/wombat.png",
         "name": "wombat"
     },
     {
-        "image": "../assets/echidnas2.png",
+        "image": "./assets/echidnas2.png",
         "name": "echidnas2"
     },
     {
-        "image": "../assets/kangaroo2.png",
+        "image": "./assets/kangaroo2.png",
         "name": "kangaroo2"
     },
     {
-        "image": "../assets/koala2.png",
+        "image": "./assets/koala2.png",
         "name": "koala2"
     },
     {
-        "image": "../assets/kookaburra2.png",
+        "image": "./assets/kookaburra2.png",
         "name": "kookaburra2"
     },
     {
-        "image": "../assets/tasdev.png",
+        "image": "./assets/tasdev.png",
         "name": "Tasmanian Devil"
     },
     {
-        "image": "../assets/tasdev2.png",
+        "image": "./assets/tasdev2.png",
         "name": "Tasmanian Devil2"
     },
     {
-        "image": "../assets/turtle2.png",
+        "image": "./assets/turtle2.png",
         "name": "turtle2"
     }
 ]
