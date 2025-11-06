@@ -133,7 +133,7 @@ function generateCards() {
     cardElement.setAttribute("data-name", card.name);
     cardElement.innerHTML = `
       <div class="front">
-        <img class="front-image" src="${card.image}" alt="${card.image}"/>
+        <img class="front-image" src="${cards.image}" alt="${cards.image}"/>
       </div>
       <div class="back"></div>
     `;
