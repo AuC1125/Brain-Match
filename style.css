@@ -1,0 +1,314 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-width: 100vw;
+  font-family: Arial, sans-serif;
+}
+
+/* Canvas background */
+#sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: block;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 40px;
+  color: white; /* make visible on dark backgrounds */
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: rgb(255, 255, 255); /* make visible on dark backgrounds */
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.actions button {
+  padding: 8px 16px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #27ae60;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.actions button:hover {
+  background-color: #1e874b;
+}
+
+/* ============================= */
+/* ===== Memory Card Styles ===== */
+/* ============================= */
+.grid-container {
+  display: grid;
+  justify-content: center;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+.grid-container.is-shuffling {
+  pointer-events: none; /* lock input during reveal/shuffle */
+}
+
+.card {
+  aspect-ratio: 3/4;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out; /* flip transition */
+}
+
+.front-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  border-radius: 10px; 
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.card .front {
+  transform: rotateY(180deg);
+  overflow: hidden; 
+}
+
+.card .back {
+  background-image: url("./assets/Card.back.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+/* === highlight the two cards being swapped === */
+.card.is-swapping {
+  outline: 3px solid rgba(255, 215, 0, 0.95);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+/* ============================= */
+/* ===== Popup Styles ===== */
+/* ============================= */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  animation: fadeIn 1s ease;
+}
+
+.popup-content h2 {
+  margin-bottom: 15px;
+  font-size: 2rem;
+  color: #125c69;
+}
+
+.popup-content p {
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+#start-btn,
+#play-again-btn,
+#level-select-btn,
+#close-level-picker,
+#next-level-btn {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#start-btn:hover,
+#play-again-btn:hover,
+#level-select-btn:hover,
+#close-level-picker:hover,
+#next-level-btn:hover {
+  background: #1e874b;
+}
+
+#win-popup .popup-content h2 {
+  color: #27ae60;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ============================= */
+/* ===== Countdown Overlay ===== */
+/* ============================= */
+.countdown {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 998; /* below popups */
+  pointer-events: none;
+}
+
+.countdown.hidden { display: none; }
+
+.countdown #countdown-num {
+  font-size: clamp(48px, 12vw, 160px);
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  animation: pop 1s ease both;
+}
+
+@keyframes pop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+
+/* ============================================ */
+/* ===== Fun Fact toast: corner positions ===== */
+/* ============================================ */
+#funfact-container {
+  position: fixed;
+  top: 50px;          
+  left: 0;
+  right: 0;
+  pointer-events: none;   
+  z-index: 500;
+  display: none;          
+}
+
+.funfact-toast {
+  position: relative;
+  display: inline-block;
+  max-width: 340px;
+  background: rgba(255,255,255,0.96);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  padding: 10px 14px;
+  margin: 6px 12px;
+  pointer-events: auto;
+  animation: ff-fade-in 0.25s ease-out;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.funfact-toast.left  { 
+  float: left;  
+  clear: left;  
+  margin-left: 12px; 
+}
+
+.funfact-toast.right { 
+  float: right; 
+  clear: right; 
+  margin-right: 12px; 
+}
+
+.funfact-toast h2 {
+  font-size: 15px;
+  color: #125c69;
+  margin: 0 24px 4px 0;
+}
+.funfact-toast p {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+  white-space: pre-line;
+  line-height: 1.3;
+}
+.funfact-toast button.close-btn {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: transparent;
+  color: #777;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* 淡入 */
+@keyframes ff-fade-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#funfact-container::after { 
+  content: ""; 
+  display: block; 
+  clear: both; 
+}
+
+#level-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#level-buttons button {
+  width: 60px;
+  height: 60px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <!-- Background Canvas -->
+    <canvas id="sky"></canvas>
+
+    <!-- 3-2-1 Countdown Overlay -->
+    <div id="countdown" class="countdown hidden" aria-hidden="true">
+      <span id="countdown-num">3</span>
+    </div>
+
+    <!-- Welcome Popup -->
+    <div id="welcome-popup" class="popup-overlay">
+      <div class="popup-content">
+        <h2>Welcome to Brain Match 🧠✨</h2>
+        <p>Test your memory and have fun!</p>
+        <button id="start-btn">Start Game</button>
+        <button id="level-select-btn">Choose Level</button>
+      </div>
+    </div>
+
+    <!-- Win Popup -->
+    <div id="win-popup" class="popup-overlay" style="display: none;">
+      <div class="popup-content">
+        <h2 id="win-title">🎉 You Win! 🎉</h2>
+        <p id="final-score-msg">Great job completing Brain Match!</p>
+        <button id="play-again-btn">Play Again</button>
+        <button id="level-select-btn">Choose Level</button>
+        <button id="next-level-btn">Next Level</button>
+      </div>
+    </div>
+
+    <div id="level-picker-popup" class="popup-overlay" style="display: none;">
+      <div class="popup-content">
+        <h2>Select a Level</h2>
+        <div id="level-buttons"></div>
+        <button id="close-level-picker">Close</button>
+      </div>
+    </div>
+
+    <div id="funfact-container">
+      <!-- <div class="popup-content" role="dialog" aria-modal="false" aria-labelledby="ff-title">
+        <h2 id="ff-title">Fun Fact</h2>
+        <p id="ff-body">Did you know?</p>
+        <button id="ff-close" aria-label="Close">X</button>
+      </div> -->
+    </div>
+
+    <!-- Main Game Content -->
+    <h1>Brain Match</h1>
+
+    <div class="stats">
+      <p>Level: <span class="level">1</span></p>
+      <p>Moves: <span class="moves">0</span></p>
+      <p>Time: <span class="timer">00:00</span></p>
+      <p>Score: <span class="score">0</span></p>
+      <p>Best: <span class="best">0</span></p>
+    </div>
+
+    <div class="grid-container"></div>
+    
+    <div class="actions">
+      <button id="restart-btn">Restart</button>
+      <button id="toggle-sound">🔊 Sound On</button>
+    </div>
+
+    <!-- Load scripts -->
+    <script src="background.js"></script>
+    <script type="module" src="audio.js"></script>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
