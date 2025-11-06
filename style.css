@@ -100,6 +100,7 @@ h1 {
 }
 
 .card .front {
+  background-image: url("./data/cards.json");
   transform: rotateY(180deg);
   overflow: hidden; 
 }
