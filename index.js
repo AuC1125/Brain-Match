@@ -38,6 +38,7 @@ const toggleSoundBtn = document.getElementById("toggle-sound");
 const levelPickerPopup = document.getElementById("level-picker-popup");
 const levelButtonsContainer = document.getElementById("level-buttons");
 const levelSelectBtn = document.getElementById("level-select-btn");
+const levelSelectBtnWin = document.getElementById("level-select-btn-win");
 const closeLevelPicker = document.getElementById("close-level-picker");
 
 startBtn.addEventListener("click", () => {
@@ -259,7 +260,7 @@ function showFunFact(animal) {
 function renameAnimal(name) {
   return name
     .replace(/2$/, "")  
-    .replace(/s$/, "")    
+    //.replace(/s$/, "")
     .toLowerCase();       
 }
 function disableCards() {
@@ -375,9 +376,23 @@ function restart() {
 
 // Level buttons
 
-levelSelectBtn.addEventListener("click", () => {
-  playSound("button");
-  showLevelPicker();
+// levelSelectBtn.addEventListener("click", () => {
+//   playSound("button");
+//   showLevelPicker();
+// });
+
+// levelSelectBtnWin.addEventListener("click", () => {
+//   playSound("button");
+//   showLevelPicker();
+// });
+
+document.addEventListener("click", (e) => {
+  const target = e.target;
+
+  if (target.id === "level-select-btn" || target.id === "level-select-btn-win") {
+    playSound("button");
+    showLevelPicker();
+  }
 });
 
 closeLevelPicker.addEventListener("click", () => {
@@ -410,7 +425,7 @@ function showLevelPicker() {
       levelPickerPopup.style.display = "none";
       winPopup.style.display = "none";
       popup.style.display= "none";
-      currentLevel = (currentLevel + i) % LEVELS.length;
+      currentLevel = i;
       restart();
       startGame(currentLevel);
     });
